@@ -2,7 +2,7 @@
   <div>
     <p>On June 7th, 2019, I am unplugging 
     to </p>
-    <input class="activity" v-bind:class="{editing: editing}" type="text" @focus="editing=true" @blur="setEditing" v-model="pledge" @input="go" :style="{ width: pledgeWidth + 'px' }"></input>
+    <input class="activity" v-bind:class="{sample: !editing}" type="text" @focus="setEditing(true)" @blur="setEditing(false)" v-model="pledge" @input="go" :style="{ width: pledgeWidth + 'px' }"></input>
     <div><span ref="hiddenActivity" class="activity hidden">{{ pledge }}</span></div>
   </div>
 </template>
@@ -22,28 +22,34 @@ export default {
     }
   },
   methods: {
-    setEditing: function () {
-      console.log(this.pledge)
-      console.log('hola')
-      console.log(this.$refs.hiddenActivity.clientWidth)
-      if(!this.pledge) {
-        this.editing = false
-        // restart timer
-        //this.triggerSampler();
+    setEditing: function (isFocus) {
+      if(isFocus) { //focus
+        if(this.timer) {
+          window.clearTimeout(this.timer)
+        }
+        if(!this.editing) {
+          this.pledge = ''
+        }
+        this.editing = true
+      }
+      if(!isFocus) { //blur
+        if(!this.pledge) {
+          this.editing = false
+          this.triggerSampler();
+        }
       }
     },
     go: function ($event) {
-      console.log('yoyo')
-      console.log($event)
       this.pledgeWidth = this.$refs.hiddenActivity.clientWidth + 50
     },
     triggerSampler: function () {
-      console.log('hola ')
+      window.clearTimeout(this.timer)
       this.switchSample()
-      this.timer = window.setTimeout(this.switchSample,2000)
     },
     switchSample: function () {
-      //this.pledge = pledges[0]
+      let rand = Math.floor(Math.random()*pledges.length)
+      this.pledge = pledges.default[rand]
+      this.timer = window.setTimeout(this.switchSample,2000)
     }
   }
 }
@@ -74,8 +80,11 @@ span {
   border-bottom:2px solid LightGray; /* consider text-underline */
   outline:0;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-},
+}
+.sample {
+  color: SlateGray;
+}
 .hidden {
-
+  visibility: hidden;
 }
 </style>
