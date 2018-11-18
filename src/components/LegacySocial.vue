@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!--This file © 2018 Boys & Girls Clubs of Canada. -->
     <div class="et_social_sidebar_networks et_social_visible_sidebar et_social_slideup et_social_animated et_social_rounded et_social_sidebar_flip et_social_mobile_on et_social_sidebar_networks_right" style="top: 307.5px; display: inline-block; position: static;clear:both">
           
           <ul class="et_social_icons_container"><li class="et_social_facebook">
