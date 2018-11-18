@@ -2,7 +2,7 @@
   <div>
     <p>On June 7th, 2019, I am unplugging 
     to </p>
-    <input class="activity" v-bind:class="{sample: !editing}" type="text" @focus="setEditing(true)" @blur="setEditing(false)" v-model="pledge" @input="go" :style="{ width: pledgeWidth + 'px' }"></input>
+    <input class="activity" v-bind:class="{sample: !editing, fadeout: fadeout, fadein: fadein}" type="text" @focus="setEditing(true)" @blur="setEditing(false)" v-model="pledge" @input="go" :style="{ width: pledgeWidth + 'px' }"></input>
     <div><span ref="hiddenActivity" class="activity hidden">{{ pledge }}</span></div>
   </div>
 </template>
@@ -18,7 +18,9 @@ export default {
       timer: null,
       checked: null,
       pledge: null,
-      pledgeWidth: null
+      pledgeWidth: null,
+      fadeout: false,
+      fadein: false
     }
   },
   methods: {
@@ -83,8 +85,39 @@ span {
 }
 .sample {
   color: SlateGray;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-name: fade;
+}
+@keyframes fade {
+  from {
+    color: white;
+  }
+
+  15% {
+    color: SlateGray;
+  }
+
+  85% {
+    color: SlateGrey;
+  }
+
+  to {
+    color: white;
+  }
 }
 .hidden {
   visibility: hidden;
+}
+.fadeout {
+  color: white;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-delay: 1.7s;
+}
+.fadein {
+  color: SlateGray;
+  transition-property: all;
+  transition-duration: 0.3s;
 }
 </style>
