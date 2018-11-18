@@ -5,6 +5,17 @@
     <input class="activity" v-bind:class="{sample: !editing, fadeout: fadeout, fadein: fadein}" type="text" @focus="setEditing(true)" @blur="setEditing(false)" v-model="pledge" @input="go" :style="{ width: pledgeWidth + 'px' }"></input>
     <div><span ref="hiddenActivity" class="activity hidden">{{ pledge }}</span></div>
     <button class="pledgeButton" v-on:click="pledgeActivity">Pledge !</button>
+    <div class="container" v-if='pledged'>
+               <div class="card" style="width: 275px">
+                 <div class="card-body" >
+                   <h5 style="text-align: center;" class="card-title">On June 7th, 2019, I will</h5>
+                   <p style="text-align:center;">                   
+                       <img height="100" src="http://www.unplugtoconnect.ca/wp-content/uploads/2018/10/big-UnplugToConnect-NoBackground.png" class="vc_single_image-img attachment-full" alt="" srcset="http://www.unplugtoconnect.ca/wp-content/uploads/2018/10/big-UnplugToConnect-NoBackground.png 450w, http://www.unplugtoconnect.ca/wp-content/uploads/2018/10/big-UnplugToConnect-NoBackground-300x259.png 300w" sizes="(max-width: 450px) 100vw, 450px">
+                   </p>
+                   <h5 style="text-align: center;" class="card-title">to {{ pledge }}</h5>
+                 </div>
+               </div>
+           </div>
     <LegacySocial v-if='pledged' />
     <div style="clear:both"></div>
     <div id="container">
@@ -107,6 +118,7 @@ span {
   border-bottom:2px solid LightGray; /* consider text-underline */
   outline:0;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  background: rgba(255,255,255, 0.75);;
 }
 .sample {
   color: SlateGray;
