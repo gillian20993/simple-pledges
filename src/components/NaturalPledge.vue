@@ -5,7 +5,8 @@
     <input class="activity" v-bind:class="{sample: !editing, fadeout: fadeout, fadein: fadein}" type="text" @focus="setEditing(true)" @blur="setEditing(false)" v-model="pledge" @input="go" :style="{ width: pledgeWidth + 'px' }"></input>
     <div><span ref="hiddenActivity" class="activity hidden">{{ pledge }}</span></div>
     <button class="pledgeButton" v-on:click="pledgeActivity">Pledge !</button>
-    <div class="container" v-if='pledged'>
+    <div style="clear:both"></div>
+    <div class="container" v-if='pledged' style="display: inline-block; width: auto; padding: 2rem">
                <div class="card" style="width: 275px">
                  <div class="card-body" >
                    <h5 style="text-align: center;" class="card-title">On June 7th, 2019, I will</h5>
