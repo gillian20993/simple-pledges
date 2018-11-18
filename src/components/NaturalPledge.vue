@@ -12,6 +12,8 @@
       <p v-for="p in pledges.slice().reverse()">{{p}}</p>
     </div>
     </div>
+    <!-- change this to geosheets -->
+    <iframe src="https://www.geoshee.com/map/s:V6O5KYJQ/Unplug-to-Connect/embed" style="border:none;width:640px;height:480px"></iframe>
   </div>
   </div>
 </template>
