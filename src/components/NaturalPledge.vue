@@ -4,20 +4,27 @@
     to </p>
     <input class="activity" v-bind:class="{sample: !editing, fadeout: fadeout, fadein: fadein}" type="text" @focus="setEditing(true)" @blur="setEditing(false)" v-model="pledge" @input="go" :style="{ width: pledgeWidth + 'px' }"></input>
     <div><span ref="hiddenActivity" class="activity hidden">{{ pledge }}</span></div>
-    <button v-on:click="pledgeActivity">Pledge !</button>
+    <button class="pledgeButton" v-on:click="pledgeActivity">Pledge !</button>
+    <LegacySocial v-if='pledged' />
+    <div style="clear:both"></div>
     <div id="container">
     <div id="box" >
       <p v-for="p in pledges.slice().reverse()">{{p}}</p>
     </div>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
 import * as pledges from './mocks/pledges.json'
+import LegacySocial from './LegacySocial.vue'
 
 export default {
   name: 'NaturalPledge',
+  components: {
+    LegacySocial
+  },
   data () {
     return {
       editing: false,
@@ -27,7 +34,8 @@ export default {
       pledgeWidth: null,
       fadeout: false,
       fadein: false,
-      pledges: pledges.default
+      pledges: pledges.default,
+      pledged: false
     }
   },
   created: function () {
@@ -65,6 +73,7 @@ export default {
     },
     pledgeActivity: function () {
       this.pledges.push(this.pledge)
+      this.pledged = true
     }
   }
 }
@@ -157,5 +166,10 @@ span {
     100% {
         margin-bottom: 800px;
     }
+}
+.pledgeButton {
+  position:relative;
+  top: -15px;
+  margin: 10px;
 }
 </style>

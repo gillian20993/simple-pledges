@@ -1,5 +1,6 @@
 <template>
-  <div id="app">
+  <div id="app" class="et_monarch">
+    
     <NaturalPledge />
   </div>
 </template>
