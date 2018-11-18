@@ -30,6 +30,9 @@ export default {
       pledges: pledges.default
     }
   },
+  created: function () {
+    this.triggerSampler()
+  },
   methods: {
     setEditing: function (isFocus) {
       if(isFocus) { //focus
