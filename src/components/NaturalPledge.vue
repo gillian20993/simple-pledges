@@ -5,7 +5,11 @@
     <input class="activity" v-bind:class="{sample: !editing, fadeout: fadeout, fadein: fadein}" type="text" @focus="setEditing(true)" @blur="setEditing(false)" v-model="pledge" @input="go" :style="{ width: pledgeWidth + 'px' }"></input>
     <div><span ref="hiddenActivity" class="activity hidden">{{ pledge }}</span></div>
     <button v-on:click="pledgeActivity">Pledge !</button>
-    <p v-for="p in pledges.slice().reverse()">{{p}}</p>
+    <div id="container">
+    <div id="box" >
+      <p v-for="p in pledges.slice().reverse()">{{p}}</p>
+    </div>
+    </div>
   </div>
 </template>
 
@@ -125,5 +129,30 @@ span {
   color: SlateGray;
   transition-property: all;
   transition-duration: 0.3s;
+}
+#container {
+    height: 200px;
+    width: 800px;
+    border: 2px solid LightGray;
+    overflow: hidden;
+    margin: 25px auto;
+    white-space:nowrap;
+}
+#box {
+    -webkit-animation-name: fx;
+    -webkit-animation-duration: 10s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    
+}
+
+
+@-webkit-keyframes fx {
+    0% {
+        margin-top: -400px;
+    }
+    100% {
+        margin-bottom: 800px;
+    }
 }
 </style>
