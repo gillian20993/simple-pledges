@@ -175,4 +175,7 @@ span {
   top: -15px;
   margin: 10px;
 }
+body {
+  background: top center no-repeat url('../assets/Activities.png');
+}
 </style>
