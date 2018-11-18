@@ -70,6 +70,7 @@ export default {
       let rand = Math.floor(Math.random()*pledges.length)
       this.pledge = this.pledges[rand]
       this.timer = window.setTimeout(this.switchSample,2000)
+      this.$nextTick(this.go)
     },
     pledgeActivity: function () {
       this.pledges.push(this.pledge)
