@@ -4,6 +4,7 @@
     to </p>
     <input class="activity" v-bind:class="{sample: !editing, fadeout: fadeout, fadein: fadein}" type="text" @focus="setEditing(true)" @blur="setEditing(false)" v-model="pledge" @input="go" :style="{ width: pledgeWidth + 'px' }"></input>
     <div><span ref="hiddenActivity" class="activity hidden">{{ pledge }}</span></div>
+    <p v-for="p in pledges.default">{{p}}</p>
   </div>
 </template>
 
@@ -20,7 +21,8 @@ export default {
       pledge: null,
       pledgeWidth: null,
       fadeout: false,
-      fadein: false
+      fadein: false,
+      pledges: pledges
     }
   },
   methods: {
@@ -50,7 +52,7 @@ export default {
     },
     switchSample: function () {
       let rand = Math.floor(Math.random()*pledges.length)
-      this.pledge = pledges.default[rand]
+      this.pledge = this.pledges.default[rand]
       this.timer = window.setTimeout(this.switchSample,2000)
     }
   }
