@@ -4,7 +4,8 @@
     to </p>
     <input class="activity" v-bind:class="{sample: !editing, fadeout: fadeout, fadein: fadein}" type="text" @focus="setEditing(true)" @blur="setEditing(false)" v-model="pledge" @input="go" :style="{ width: pledgeWidth + 'px' }"></input>
     <div><span ref="hiddenActivity" class="activity hidden">{{ pledge }}</span></div>
-    <p v-for="p in pledges.default">{{p}}</p>
+    <button v-on:click="pledgeActivity">Pledge !</button>
+    <p v-for="p in pledges.slice().reverse()">{{p}}</p>
   </div>
 </template>
 
@@ -22,7 +23,7 @@ export default {
       pledgeWidth: null,
       fadeout: false,
       fadein: false,
-      pledges: pledges
+      pledges: pledges.default
     }
   },
   methods: {
@@ -52,8 +53,11 @@ export default {
     },
     switchSample: function () {
       let rand = Math.floor(Math.random()*pledges.length)
-      this.pledge = this.pledges.default[rand]
+      this.pledge = this.pledges[rand]
       this.timer = window.setTimeout(this.switchSample,2000)
+    },
+    pledgeActivity: function () {
+      this.pledges.push(this.pledge)
     }
   }
 }
